@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title> ComingSoon </title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center px-3 sticky-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">ComingSoon</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#contact">Book now</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section transparent-background">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Coming Soon</h2>
+            <p>We are still working on our website. Stay tuned for updates!</p>
+          </div>
+          <div class="countdown d-flex justify-content-center" id="countdown">
+            <div>
+              <h3 class="count-days" id="days">00</h3>
+              <h4>Days</h4>
+            </div>
+            <div>
+              <h3 class="count-hours" id="hours">00</h3>
+              <h4>Hours</h4>
+            </div>
+            <div>
+              <h3 class="count-minutes" id="minutes">00</h3>
+              <h4>Minutes</h4>
+            </div>
+            <div>
+              <h3 class="count-seconds" id="seconds">00</h3>
+              <h4>Seconds</h4>
+            </div>
+          </div>
+    
+          <div class="col-lg-5 hero-newsletter">
+            <form action="forms/newsletter.php" method="post" class="php-email-form">
+              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+            </form>
+            <p>Subscribe with us to receive everything new about our website
+              </p>
+
+          </div>
+    
+          <div class="social-links">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <script>
+      var endDate = new Date();
+endDate.setDate(endDate.getDate() + 7); // إضافة 7 أيام (أسبوع) من اليوم
+
+// تحديث العداد كل ثانية
+var countdown = setInterval(function() {
+  var now = new Date().getTime(); // الوقت الحالي
+  var distance = endDate - now; // الوقت المتبقي
+
+  // حساب الأيام، الساعات، الدقائق، والثواني
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // تحديث العناصر على الصفحة
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+  // إذا انتهى العداد
+  if (distance < 0) {
+    clearInterval(countdown); // إيقاف العداد
+    document.getElementById("countdown").innerHTML = "The countdown is over!";
+  }
+}, 1000);
+    </script>
+    <section id="contact" class="contact section transparent-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Book now</h2>
+        <p>“Book now and be one of the first 100 to get the course of your choice for free!”</p>
+      </div><!-- End Section Title -->
+    
+      <div class="container" >
+    
+        <div class="row gy-4">
+    
+          <div class="col-lg-6">
+            <form action="{{ route('order.store') }}" method="POST" class="php-email-form"  >
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+    
+                
+                <style>
+                    /* تنسيق مخصص لحقل الهاتف */
+                    #phone {
+                        direction: ltr;
+                        color:black;
+                    }
+                    .iti__flag-container {
+}
+
+.iti__country-list {
+    background-color: #fff; /* خلفية بيضاء للقائمة */
+    color: #333; /* لون النص في القائمة */
+}
+
+.iti__country {
+    color: #333; /* لون النص لأسماء الدول */
+}
+
+.iti__country:hover {
+    background-color: #f1f1f1; /* لون الخلفية عند تمرير الفأرة */
+}
+
+.iti__dial-code {
+    color: #333; /* لون كود الاتصال */
+}
+
+.iti__selected-flag {
+    background-color: #007bff; /* لون الخلفية للعلم المحدد */
+}
+
+.iti--allow-dropdown .iti__flag-container:hover {
+    background-color: #e9ecef; /* لون الخلفية عند تمرير الفأرة على العلم */
+}
+                </style>
+
+                <div class="col-md-6 ">
+                  <input type="tel" class="form-control" id="phone"  name="phone" placeholder="Your phone" required="">
+                </div>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"/>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+
+
+<script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        // تعيين الدولة بناءً على موقع المستخدم
+        initialCountry: "auto",
+        // فصل كود الدولة عن رقم الهاتف
+        separateDialCode: true,
+        // وضع الدول المفضلة في أعلى القائمة
+        preferredCountries: ["eg", "sa", "ae", "us", "gb"], // مصر، السعودية، الإمارات، الولايات المتحدة، بريطانيا
+        // عرض جميع الدول المدعومة
+        onlyCountries: [
+            "af", "al", "dz", "as", "ad", "ao", "ai", "ag", "ar", "am", "aw", "au", "at", "az",
+            "bs", "bh", "bd", "bb", "by", "be", "bz", "bj", "bm", "bt", "bo", "ba", "bw", "br", 
+            "bn", "bg", "bf", "bi", "kh", "cm", "ca", "cv", "ky", "cf", "td", "cl", "cn", "co", 
+            "km", "cg", "cd", "cr", "ci", "hr", "cu", "cy", "cz", "dk", "dj", "dm", "do", "ec", 
+            "eg", "sv", "gq", "er", "ee", "et", "fj", "fi", "fr", "ga", "gm", "ge", "de", "gh", 
+            "gi", "gr", "gd", "gt", "gn", "gw", "gy", "ht", "hn", "hk", "hu", "is", "in", "id", 
+            "ir", "iq", "ie", "il", "it", "jm", "jp", "jo", "kz", "ke", "ki", "kp", "kr", "kw", 
+            "kg", "la", "lv", "lb", "ls", "lr", "ly", "li", "lt", "lu", "mo", "mk", "mg", "mw", 
+            "my", "mv", "ml", "mt", "mh", "mr", "mu", "mx", "fm", "md", "mc", "mn", "me", "ma", 
+            "mz", "mm", "na", "nr", "np", "nl", "nz", "ni", "ne", "ng", "nu", "no", "om", "pk", 
+            "pw", "ps", "pa", "pg", "py", "pe", "ph", "pl", "pt", "pr", "qa", "ro", "ru", "rw", 
+            "kn", "lc", "vc", "ws", "sm", "st", "sa", "sn", "rs", "sc", "sl", "sg", "sk", "si", 
+            "sb", "so", "za", "ss", "es", "lk", "sd", "sr", "sz", "se", "ch", "sy", "tw", "tj", 
+            "tz", "th", "tl", "tg", "to", "tt", "tn", "tr", "tm", "tv", "ug", "ua", "ae", "gb", 
+            "us", "uy", "uz", "vu", "va", "ve", "vn", "ye", "zm", "zw"
+        ],
+        geoIpLookup: function(callback) {
+            fetch('https://ipinfo.io/json', { headers: { 'Accept': 'application/json' }})
+            .then((resp) => resp.json())
+            .then((resp) => {
+                const countryCode = (resp && resp.country) ? resp.country : "us";
+                callback(countryCode);
+            });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"
+    });
+</script>
+    
+                <div class="col-12">
+                  <input type="email" class="form-control" name="email" placeholder="gmail" required="">
+                </div>
+    
+                <div class="col-12">
+                  <select name="typecourse"  class="form-control" required>
+                    <option value="" disabled selected>Select a Course</option>
+                    <option value="course1">Course 1</option>
+                    <option value="course2">Course 2</option>
+                    <option value="course3">Course 3</option>
+                    <option value="course4">Course 4</option>
+                  </select>               
+                 </div>
+                 <div class="col-12 text-center ">
+
+                  <button type="submit">Send Message</button>
+              </div>
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+    
+          <!-- Video Section -->
+          <div class="col-lg-6">
+            <div class="video-wrapper" data-aos="fade-up" data-aos-delay="300">
+              <video width="100%" height="200%" controls>
+                <source src="assets/img/WhatsApp Video 2024-11-06 at 6.19.21 PM.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div><!-- End Video Section -->
+    
+        </div>
+    
+      </div>
+    
+    </section>
+
+
+    <!-- Contact Section -->
+   
+  </main>
+
+  <footer id="footer" class="footer transparent-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-twitter-x"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
+      </div>
+     
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
